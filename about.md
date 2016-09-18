@@ -4,7 +4,7 @@ title: About
 permalink: /about/
 ---
 
-Punted to next release. :P
+Punted to next release.
 
 ### Contact me
 
