@@ -37,7 +37,7 @@ The macro is defined:
 
 LogError is a function call to log this error into the log file - make this function threadsafe. And the next part - oh the blasphemy - we use goto.
 
-Gotos get a bad rep because of the famous Dijkstra's [letter](http://www.cs.utexas.edu/users/EWD/ewd02xx/EWD215.PDF), and we are taught in college that gotos are bad and harmful. But with well thought out code, gotos can be very useful in writing structured and readable code. One obvious rule that must be followed is "no backward gotos".
+Gotos get a bad rep because of the famous Dijkstra's [letter](http://www.cs.utexas.edu/users/EWD/ewd02xx/EWD215.PDF), and we are taught in college that gotos are bad and harmful. But with well thought out code, gotos can be very useful in writing structured and readable code.
 
 So this is how the code looks including the error section:
 
