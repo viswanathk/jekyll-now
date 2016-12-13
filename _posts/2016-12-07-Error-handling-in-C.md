@@ -6,9 +6,9 @@ title: Error handling in C
 C, a language created in 1972, does not provide an easy way to handle errors like modern programming languages. We cannot "try" some code and "catch" an error. So how do we handle errors in C?
 
 
-Almost all of the top 10 results in Google suggested the same approach:
+Almost all of the top 10 results in Google suggest the same approach:
 
-~~~~
+~~~~C
 int err = someFunction();
 if(err != ERROR_SUCCESS){
 	//fail and do something
@@ -24,14 +24,14 @@ Our team in VMware is responsible for writing platform code, and the code base i
 
 Instead of repeated if, else blocks navigating the flow of execution around the errors, the following macro is used:
 
-~~~~
+~~~~C
 int err = someFunction();
 BAIL_ON_ERROR(err);
 ~~~~
 
 The macro is defined:
 
-~~~~
+~~~~C
 #define BAIL_ON_ERROR(x) if(x){LogError(x); goto error;}
 ~~~~
 
@@ -41,7 +41,7 @@ Gotos get a bad rep because of the famous Dijkstra's [letter](http://www.cs.utex
 
 So this is how the code looks including the error section:
 
-~~~~
+~~~~C
 int err = someFunction();
 BAIL_ON_ERROR(err);
 int err = anotherFunction();
@@ -56,6 +56,7 @@ error:
 
 
 Moving the deallocation part to the error section gives two advantages:
+
 * As gotos are fall through, there need not be a special case if the code doesn't error out. The error section frees up used resources, which is required anyway.
 * In case of an error, first deallocating all the used resources will reduce the chances of possible memory leaks.
 
